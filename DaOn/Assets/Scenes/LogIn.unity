@@ -214,6 +214,7 @@ GameObject:
   - component: {fileID: 139393824}
   - component: {fileID: 139393823}
   - component: {fileID: 139393822}
+  - component: {fileID: 139393821}
   m_Layer: 5
   m_Name: LogIn
   m_TagString: Untagged
@@ -241,6 +242,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -70}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &139393821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139393819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13a0dd72ae00f9149a7cf26e35408bfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &139393822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,7 +297,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 139393823}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 139393821}
+        m_TargetAssemblyTypeName: GoMain, Assembly-CSharp
+        m_MethodName: OnClickLogIn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &139393823
 MonoBehaviour:
   m_ObjectHideFlags: 0
