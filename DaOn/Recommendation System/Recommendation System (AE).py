@@ -52,26 +52,32 @@ total_test = torch.FloatTensor(total_test)
 # model
 
 class Autorec(nn.Module):
-    def __init__(self, hidden_size_1, hidden_size_2, dropout, input_size):
+    def __init__(self, hidden_size_1, hidden_size_2, hidden_size_3, hidden_size_4, dropout, input_size):
         super(Autorec, self).__init__()
         self.input_size = input_size
         self.hidden_size_1 = hidden_size_1
         self.hidden_size_2 = hidden_size_2
+        self.hidden_size_3 = hidden_size_3
+        self.hidden_size_4 = hidden_size_4
 
         self.encoder_l1 = nn.Linear(self.input_size, self.hidden_size_1)
         self.encoder_l2 = nn.Linear(self.hidden_size_1, self.hidden_size_2)
+        self.encoder_l3 = nn.Linear(self.hidden_size_2, self.hidden_size_3)
+        self.encoder_l4 = nn.Linear(self.hidden_size_3, self.hidden_size_4)
 
-        self.decoder_l1 = nn.Linear(self.hidden_size_2, self.hidden_size_1)
-        self.decoder_l2 = nn.Linear(self.hidden_size_1, self.input_size)
+        self.decoder_l1 = nn.Linear(self.hidden_size_4, self.hidden_size_3)
+        self.decoder_l2 = nn.Linear(self.hidden_size_3, self.hidden_size_2)
+        self.decoder_l3 = nn.Linear(self.hidden_size_2, self.hidden_size_1)
+        self.decoder_l4 = nn.Linear(self.hidden_size_1, self.input_size)
 
         self.drop = nn.Dropout(dropout)
         # self.sigmoid=nn.LogSigmoid()
 
     def forward(self, input_ratings):
         # input_ratings=F.normalize(input_ratings)
-        enc_out = self.encoder_l2(F.relu(self.encoder_l1(input_ratings)))
+        enc_out = self.encoder_l4(F.relu(self.encoder_l3(F.relu(self.encoder_l2(F.relu(self.encoder_l1(input_ratings)))))))
         enc_out = self.drop(enc_out)
-        dec_out = self.decoder_l2(F.relu(self.decoder_l1(enc_out)))
+        dec_out = self.decoder_l4(F.relu(self.decoder_l3(F.relu(self.decoder_l2(F.relu(self.decoder_l1(enc_out)))))))
         return enc_out,dec_out
 
 # hyperparmeter
@@ -87,11 +93,13 @@ def adjust_learning_rate(optimizer, epoch, lr):
 def mean_squared_error(y, t):
     return 0.5 * torch.sum((y-t)**2)
 
-autorec=Autorec(hidden_size_1=128, hidden_size_2=32, dropout=0.1, input_size=total_ep.shape[2])
+autorec=Autorec(hidden_size_1=256, hidden_size_2=128, hidden_size_3=64, hidden_size_4=32, dropout=0.1, input_size=total_ep.shape[2])
 optimizer=optim.Adam(autorec.parameters(), lr=0.0001)
 device=torch.device('cuda')
 criterion=nn.MSELoss()
 autorec=autorec.to(device)
+
+
 
 # train
 
