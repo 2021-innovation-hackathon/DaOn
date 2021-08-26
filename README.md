@@ -4,7 +4,7 @@
 
 ---
 
-![Main_Logo.jpg](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/176fc804-93da-4eab-b6c8-5aaa3b74951f/Main_Logo.jpg)
+
 
 **냉장고동 행복센터**는 유저들이 과일 캐릭터로 2D 기반 **메타버스** 플랫폼입니다.
 
