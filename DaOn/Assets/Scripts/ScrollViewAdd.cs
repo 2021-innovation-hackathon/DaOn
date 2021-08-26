@@ -8,9 +8,9 @@ using Photon.Pun;
 public class ScrollViewAdd : MonoBehaviourPunCallbacks
 {
     public PhotonView PV;
-
+    static int cnt = 0;
     [SerializeField]
-    private GameObject elementPrefab = null;
+    private GameObject[] elementPrefab = new GameObject[5];
 
     [SerializeField]
     private Transform content = null;
@@ -30,7 +30,8 @@ public class ScrollViewAdd : MonoBehaviourPunCallbacks
     [PunRPC]
     public void AddElement()
     {
-        var instance = Instantiate(elementPrefab);
+        var instance = Instantiate(elementPrefab[cnt]);
         instance.transform.SetParent(content, false);
+        cnt++;
     }
 }

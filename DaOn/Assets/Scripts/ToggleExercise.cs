@@ -13,6 +13,7 @@ public class ToggleExercise : MonoBehaviour
 
     public void OnClickBtn()
     {
+        /*
         for(int i = 0; i < toggle.Length; i++)
         {
             if (toggle[i].isOn)
@@ -26,6 +27,7 @@ public class ToggleExercise : MonoBehaviour
                 Debug.Log(i.ToString() + ":" + 0);
             }
         }
+        */
 
         SceneManager.LoadScene("LogIn");
     }
