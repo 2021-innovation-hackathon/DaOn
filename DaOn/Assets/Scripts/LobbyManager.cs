@@ -11,7 +11,7 @@ public class LobbyManager : MonoBehaviourPunCallbacks
     public Button loginBtn;
     public Text IDText;
     public Text ConnectionStatus;
-   
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +33,8 @@ public class LobbyManager : MonoBehaviourPunCallbacks
             if (PhotonNetwork.IsConnected)
             {
                 ConnectionStatus.text = "connenting to room...";
-                PhotonNetwork.JoinRandomRoom();
+                //PhotonNetwork.JoinRandomRoom();
+                PhotonNetwork.JoinLobby();
             }
             else
             {
@@ -56,16 +57,19 @@ public class LobbyManager : MonoBehaviourPunCallbacks
         PhotonNetwork.ConnectUsingSettings();
     }
 
+    /*
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
         ConnectionStatus.text = "No empty room. creating new room...";
-        PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = 4 });
+        PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = 0 });
         // MaxPlayers = 0 으로 하면 인원 제한 x
     }
-    public override void OnJoinedRoom()
+    */
+    
+
+    public override void OnJoinedLobby()
     {
-        ConnectionStatus.text = "Success to join room";
-        PhotonNetwork.LoadLevel("Chatting");
+        PhotonNetwork.LoadLevel("Main");
         // 네트워크 정보를 그대로 가져가기 위해 SceneManager.LoadScene()을 사용하지 않음
     }
 }
