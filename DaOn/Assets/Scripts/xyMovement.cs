@@ -9,7 +9,8 @@ public class xyMovement : MonoBehaviour
     private float moveSpeed = 3.0f;
     private Vector3 moveDirection = Vector3.zero;
 
-    public GameObject button;
+    public GameObject GoMovie;
+    public GameObject GoMusic;
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +35,25 @@ public class xyMovement : MonoBehaviour
     {
         if(other.gameObject.tag == "Music")
         {
-            button.SetActive(true);
+            GoMusic.SetActive(true);
+        }
+        else if(other.gameObject.tag == "Movie")
+        {
+            GoMovie.SetActive(true);
         }
     }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Music")
+        {
+            GoMusic.SetActive(false);
+        }
+        else if (other.gameObject.tag == "Movie")
+        {
+            GoMovie.SetActive(false);
+        }
+    }
+
+
 }

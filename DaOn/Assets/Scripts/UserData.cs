@@ -97,9 +97,9 @@ public class UserData : MonoBehaviourPunCallbacks
         PhotonNetwork.LoadLevel("Music");
     }
 
-    public override void OnCreateRoomFailed(short returCode, string message) => print("방만들기실패");
+    public override void OnCreateRoomFailed(short returCode, string message) { }
 
-    public override void OnJoinRoomFailed(short returCode, string message) => print("방참가실패");
+    public override void OnJoinRoomFailed(short returCode, string message) { }
 
 
 
