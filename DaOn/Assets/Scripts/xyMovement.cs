@@ -1,11 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class xyMovement : MonoBehaviour
 {
     private float moveSpeed = 3.0f;
     private Vector3 moveDirection = Vector3.zero;
+
+    public GameObject button;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,5 +28,13 @@ public class xyMovement : MonoBehaviour
         
         //새로운 위치 설정
         transform.position += moveDirection* moveSpeed * Time.deltaTime;
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.tag == "Music")
+        {
+            button.SetActive(true);
+        }
     }
 }

@@ -7,6 +7,6 @@ public class GoMain : MonoBehaviour
 {
     public void OnClickLogIn()
     {
-        SceneManager.LoadScene("Main");
+        LoadManager.LoadScene();
     }
 }
